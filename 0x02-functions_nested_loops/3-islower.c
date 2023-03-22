@@ -6,7 +6,7 @@
  *
  * Return: 1 is c is lower otherwise 0
  */
-int _islower(unsigned char c)
+int _islower(int c)
 {
 	if (c >= 'a' && c <= 'z')
 	{

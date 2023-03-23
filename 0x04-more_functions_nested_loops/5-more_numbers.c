@@ -6,10 +6,11 @@
 void more_numbers(void)
 {
 	int i, j;
+
 	j = 0;
 
-	do{
-		for(i = 0; i <= 14; i++)
+	do {
+		for (i = 0; i <= 14; i++)
 		{
 			if (i >= 10)
 			{
@@ -22,5 +23,5 @@ void more_numbers(void)
 
 		j++;
 
-	} while(j < 10);
+	} while (j < 10);
 }

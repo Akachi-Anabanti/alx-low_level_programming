@@ -3,35 +3,29 @@
 /**
  * main - entry point
  *
- * Return: 0 on successful run
+ * Return: 0 on successful execution
  */
 int main(void)
 {
-	int i, j, k, m;
+	int i, j;
 
-	for (i = 48; i <= 57; i++)
+	for (i = 0; i < 99; i++)
 	{
-		for (j = 48; j <= 56; j++)
+		for (j = i + 1; j < 100; j++)
 		{
-			for (k = 48; k <= 57; k++)
+			putchar(i / 10 + '0');
+			putchar(i % 10 + '0');
+			putchar(' ');
+			putchar(j / 10 + '0');
+			putchar(j % 10 + '0');
+			if (i != 98)
 			{
-				for (m = k + 1; m <= 57; m++)
-				{
-					putchar(i);
-					putchar(j);
-					putchar(32);
-					putchar(k);
-					putchar(m);
-
-					if (i + j + k + m < 227)
-					{
-						putchar(44);
-						putchar(32);
-					}
-				}
+				putchar(',');
+				putchar(' ');
 			}
 		}
 	}
+
 	putchar('\n');
 
 	return (0);

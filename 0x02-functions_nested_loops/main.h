@@ -10,6 +10,7 @@ int print_sign(int n); /*prototype of print_sign */
 int _abs(int); /*prototype of abs*/
 int print_last_digit(int); /* prototype of print last digit */
 void jack_bauer(void);
+void times_table(void);
 
 
 #endif

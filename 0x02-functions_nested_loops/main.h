@@ -9,7 +9,7 @@ int _isalpha(int c); /* prototype of _isalpha */
 int print_sign(int n); /*prototype of print_sign */
 int _abs(int); /*prototype of abs*/
 int print_last_digit(int); /* prototype of print last digit */
-
+void jack_bauer(void);
 
 
 #endif

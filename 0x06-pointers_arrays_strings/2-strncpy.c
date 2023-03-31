@@ -8,20 +8,17 @@
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int len_dest = 0; /* length of the destination string*/
 	int i = 0; /* LCV for src characters */
-	int len_src = 0; /* length of src */
 
-	while (dest[len_dest] != '\0')
-		len_dest++; /* increment the length */
-
-	while (src[len_src] != '\0')
-		len_src++;
-	while (i <= n - 1)
+	while (i <= n && src[i] != '\0')
 	{
 		dest[i] = src[i];
 
 		i++;
 	}
+	for ( ; i < n; i++)
+
+		dest[i] = '\0';
+
 	return (dest);
 }

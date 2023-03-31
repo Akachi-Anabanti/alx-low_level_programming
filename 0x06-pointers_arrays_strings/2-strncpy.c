@@ -10,16 +10,16 @@ char *_strncpy(char *dest, char *src, int n)
 {
 	int i = 0; /* LCV for src characters */
 
-	while (i <= n - 1 && src[i] != '\0')
+	while (i <= n - 1)
 	{
 		dest[i] = src[i];
 
 		i++;
+
+		if (src[i] == '0')
+			break;
 	}
-	while (i <= n)
-	{
+	for (; i < n; i++)
 		dest[i] = '\0';
-		i++;
-	}
 	return (dest);
 }

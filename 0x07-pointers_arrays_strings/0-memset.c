@@ -13,6 +13,8 @@ char *_memset(char *s, char b, unsigned int n)
 
 	pter = s;
 
+	n = n - 1;
+
 	for (; n != 0; n--)
 	{
 		s[n] = b;

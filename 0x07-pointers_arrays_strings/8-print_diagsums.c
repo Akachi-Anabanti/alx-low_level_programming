@@ -18,7 +18,7 @@ void print_diagsums(int *a, int size)
 		for (j = 0; j < size; j++)
 		{
 			if (i + j == size - 1)
-				ldiag_sum = ldiag_sum + a[i * size +j];
+				ldiag_sum = ldiag_sum + a[i * size + j];
 			if (i == j)
 				rdiag_sum = rdiag_sum + a[i * size + j];
 		}

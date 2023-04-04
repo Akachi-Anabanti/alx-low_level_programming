@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * strpbrk - finds the first occurence in 
+ * _strpbrk - finds the first occurence in
  * string s from string accept
  * @s: the string to check
  * @accept: the source of character

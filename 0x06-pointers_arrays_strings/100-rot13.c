@@ -18,8 +18,6 @@ char *rot13(char *s)
 		{
 			if (s[i] == alphas[j] && (j - 26) >= 0)
 				s[i] = alphas[j - 26];
-			else if (s[i] == alphas[j] && (j - 26) < 0)
-				s[i] = alphas[j + 26];
 		}
 		i++;
 	}

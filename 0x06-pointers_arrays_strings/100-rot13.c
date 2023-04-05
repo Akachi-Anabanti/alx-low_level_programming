@@ -7,15 +7,21 @@
  */
 char *rot13(char *s)
 {
+	int j;
+	int i = 0;
+	char alphas[] = {"aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ"};
 	char *str = s;
 
-	while (*s != '\0')
+	while (s[i] != '\0')
 	{
-		if (*s >= 'a' && *s <= 'z')
-			*s = ((*s - 'a') + 13) % 26 + 'a';
-		else if (*s >= 'A' && *s <= 'Z')
-			*s = ((*s - 'A') + 13) % 26 + 'A';
-		s++;
+		for (j = 0; j < 52; j++)
+		{
+			if (s[i] == alphas[j] && (j - 26) >= 0)
+				s[i] = alphas[j - 26];
+			else if (s[i] == alphas[j] && (j - 26) < 0)
+				s[i] = alphas[j + 26];
+		}
+		i++;
 	}
 	return (str);
 }

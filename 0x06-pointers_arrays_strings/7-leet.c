@@ -10,7 +10,6 @@ char *leet(char *s)
 
 	char alph[] = {"aAeEtToOlL"};
 	char num[] = {"4433770011"};
-	
 	char *str = s;
 
 	while (*s != '\0')

@@ -8,18 +8,21 @@
 char *rot13(char *s)
 {
 	int j;
-	int i = 0;
+	int i;
 	char alphas[] = {"aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ"};
+	char rot[] = {"nNoOpPqQrRsStTuUvVwWxXyYzZaAbBcCdDeEfFgGhHiIjJkKlLmM"};
 	char *str = s;
 
-	while (s[i] != '\0')
+	for (i = 0; s[i] != '\0'; i++)
 	{
 		for (j = 0; j < 52; j++)
 		{
-			if (s[i] == alphas[j] && (j - 26) >= 0)
-				s[i] = alphas[j - 26];
+			if (s[i] == alphas[j])
+			{
+				s[i] = rot[j];
+				break;
+			}
 		}
-		i++;
 	}
 	return (str);
 }

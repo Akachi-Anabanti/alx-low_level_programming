@@ -30,6 +30,11 @@ char *cap_string(char *s)
 
 		if (s[i] >= 'a' && s[i] <= 'z')
 		{
+			if (i == 0)
+			{
+				s[i] = s[i] -  32; /*capitlize first character*/
+				continue;
+			}
 			for (j = 0; j <= 12; j++)
 			{
 				if (s[i - 1] == delim[j])

@@ -23,6 +23,11 @@ int main(int argc, char *argv[])
 	{
 		if (!isdigit(argv[1][i]))
 		{
+			if (argv[1][0] == '-')
+			{
+				printf("%d\n", 0);
+				return (0);
+			}
 			printf("Error\n");
 			return (1);
 		}
@@ -41,11 +46,6 @@ int main(int argc, char *argv[])
 			}
 		}
 		printf("%d\n", coins_used);
-	}
-	else
-	{
-		printf("%d\n", 0);
-		return (1);
 	}
 	return (0);
 }

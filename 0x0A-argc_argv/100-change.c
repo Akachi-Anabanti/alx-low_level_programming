@@ -19,24 +19,18 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-	for (i = 0; argv[1][i]; i++)
+	if (argv[1][0] != '-')
 	{
-		if (!isdigit(argv[1][i]))
+		for (i = 0; argv[1][i]; i++)
 		{
-			if (argv[1][0] == '-')
+			if (!isdigit(argv[1][i]))
 			{
-				printf("%d\n", 0);
-				break;
+				printf("Error\n");
+				return (1);
 			}
-			printf("Error\n");
-			return (1);
 		}
-	}
 
-	amount = atoi(argv[1]);
-
-	if (amount > 0)
-	{
+		amount = atoi(argv[1]);
 		for (i = 0; i < 5 && amount > 0; i++)
 		{
 			while (coins[i] <= amount)
@@ -47,5 +41,7 @@ int main(int argc, char *argv[])
 		}
 		printf("%d\n", coins_used);
 	}
+	else
+		printf("%d\n", 0);
 	return (0);
 }

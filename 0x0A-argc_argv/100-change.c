@@ -43,7 +43,9 @@ int main(int argc, char *argv[])
 		printf("%d\n", coins_used);
 	}
 	else
+	{
 		printf("%d\n", 0);
-
+		return (1);
+	}
 	return (0);
 }

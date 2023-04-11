@@ -30,19 +30,20 @@ int main(int argc, char *argv[])
 
 	amount = atoi(argv[1]);
 
-	if (amount < 0)
+	if (amount > 0)
 	{
-		printf("%d\n", 0);
-		return (0);
-	}
-	for (i = 0; i < 5 && amount > 0; i++)
-	{
-		while (coins[i] <= amount)
+		for (i = 0; i < 5 && amount > 0; i++)
 		{
-			amount -= coins[i];
-			coins_used++;
+			while (coins[i] <= amount)
+			{
+				amount -= coins[i];
+				coins_used++;
+			}
 		}
+		printf("%d\n", coins_used);
 	}
-	printf("%d\n", coins_used);
+	else
+		printf("%d\n", 0);
+
 	return (0);
 }

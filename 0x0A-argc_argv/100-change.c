@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 			if (argv[1][0] == '-')
 			{
 				printf("%d\n", 0);
-				return (0);
+				return (1);
 			}
 			printf("Error\n");
 			return (1);

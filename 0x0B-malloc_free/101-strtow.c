@@ -79,10 +79,8 @@ char **strtow(char *str)
 	if (str == NULL || *str == '\0')
 		return (NULL);
 	num_words = count_words(str);
-
 	if (num_words < 1)
 		return (NULL);
-
 	words = malloc(sizeof(char *) * (num_words + 1));
 
 	if (words == NULL)
@@ -91,25 +89,26 @@ char **strtow(char *str)
 	{
 		if (is_delim(*str))
 			str++;
-		word_start = next_word(str), word_end = end_word(word_start);
-		word_len = word_end - word_start;
+		else
+		{
+			word_start = next_word(str), word_end = end_word(word_start);
+			word_len = word_end - word_start;
 
-		if (word_len > 0)
-			word = malloc(sizeof(char) * (word_len + 1));
-		if (word == NULL)
-		{
-			for (j = 0; j < i; j++)
-				free(words[j]);
-			free(words);
-			return (NULL);
+			if (word_len > 0)
+				word = malloc(sizeof(char) * (word_len + 1));
+			if (word == NULL)
+			{
+				for (j = 0; j < i; j++)
+					free(words[j]);
+				free(words);
+				return (NULL);
+			}
+			for (j = 0; j < word_len; j++)
+			{
+				word[j] = *(word_start + j);
+			}
+			word[word_len] = '\0', words[i++], str = word_end;
 		}
-		for (j = 0; j < word_len; j++)
-		{
-			word[j] = *(word_start + j);
-		}
-		word[word_len] = '\0';
-		words[i++] = word;
-		str = word_end;
 	}
 	words[i] = NULL;
 	return (words);

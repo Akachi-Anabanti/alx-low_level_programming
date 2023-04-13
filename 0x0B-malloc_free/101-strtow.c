@@ -80,6 +80,7 @@ char **strtow(char *str)
 		return (NULL);
 
 	num_words = count_words(str);
+
 	words = malloc(sizeof(char *) * (num_words + 1));
 
 	if (words == NULL)
@@ -106,7 +107,7 @@ char **strtow(char *str)
 			{
 				word[j] = *(word_start + j);
 			}
-			word[word_len] = '\0', words[i++], str = word_end;
+			word[word_len] = '\0', words[i++] = word, str = word_end;
 		}
 	}
 	words[i] = NULL;

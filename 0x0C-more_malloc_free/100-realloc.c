@@ -3,17 +3,17 @@
 /**
  * _realloc - reallocates memory block using malloc and free
  * @ptr: a pointer to the memory previously allocated
- * @old_size the size in bytes of the allocated space for ptr
- * @new_size the new size in bytes of the new memory bloc
+ * @old_size: the size in bytes of the allocated space for ptr
+ * @new_size: the new size in bytes of the new memory bloc
+ * Return: pointer to the new memory allocated
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	unsigned int i, size;
+	unsigned int i, end;
 	void *new_ptr;
 
 	if (new_size == old_size)
 		return (ptr);
-
 	if (ptr == NULL && new_size != 0)
 	{
 		new_ptr = malloc(new_size);
@@ -22,27 +22,28 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 			return (NULL);
 		return (new_ptr);
 	}
-	if (new_size > old_size)
-		size = new_size ;
-	else
-		size = new_size;
 	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
 		return (NULL);
 	}
-
-	new_ptr = malloc(size);
-
-	if(new_ptr == NULL)
-		return (NULL);
-
-	for (i = 0; i < size; i++)
+	if (new_size > old_size)
 	{
-		((char *)new_ptr)[i] = ((char *)ptr)[i];
+		end = old_size;
+		/**
+		 * ends iteration on the old size
+		 * this ensures that the added  memory is left
+		 * uninitilized
+		 */
 	}
+	else
+		end = new_size;
+	new_ptr = malloc(new_size);
 
-	free (ptr);
-
+	if (new_ptr == NULL)
+		return (NULL);
+	for (i = 0; i < end; i++)
+		((char *)new_ptr)[i] = ((char *)ptr)[i];
+	free(ptr);
 	return (new_ptr);
 }

@@ -12,20 +12,19 @@ void print_dog(struct dog *d)
 	ptr = d;
 
 	if (ptr ==  NULL)
-		printf("%s","");
+		return;
 	if (ptr->name == NULL)
 	{
 		printf("Name: (nil)");
 		printf("Age: %.6f\n", ptr->age);
 		printf("Owner: %s\n", ptr->owner);
 	}
-	else if (!ptr->age)
+	else if (ptr->age == 0.0)
 	{
 		printf("Name: %s\n", ptr->name);
 		printf("Age: (nil)");
 		printf("Owner: %s\n", ptr->owner);
 	}
-
 	else if (ptr->owner == NULL)
 	{
 		printf("Name: %s\n", ptr->name);

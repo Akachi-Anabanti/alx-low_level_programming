@@ -13,7 +13,7 @@ int op_add(int a, int b)
 	return (sum);
 }
 /**
- * opp_sub - SUbtract a and b
+ * op_sub - SUbtract a and b
  * @a: first arg
  * @b: second arg
  * Return: difference

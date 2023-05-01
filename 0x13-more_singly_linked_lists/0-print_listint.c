@@ -7,20 +7,21 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	const listint_t *temp, *nextnode;
+	const listint_t *temp;
 	size_t number = 0;
 
+	if (h == NULL)
+		return (0);
 	if (h->next == NULL)
 	{
-		printf("%d\n", h->n);
+		printf("%i\n", h->n);
 		return (1);
 	}
 	temp = h;
 	while (temp)
 	{
-		nextnode = temp->next;
-		printf("%d\n", temp->n);
-		temp = nextnode;
+		printf("%i\n", temp->n);
+		temp = temp->next;
 		number++;
 	}
 	return (number);

@@ -13,6 +13,7 @@ void free_listint2(listint_t **head)
 	{
 		free(*head);
 		*head = NULL;
+		return;
 	}
 	else
 	{
@@ -25,5 +26,7 @@ void free_listint2(listint_t **head)
 			free(tmp);
 			tmp = nextnode;
 		}
+		free(tmp);
+		free(nextnode);
 	}
 }

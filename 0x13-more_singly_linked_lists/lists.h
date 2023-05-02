@@ -2,7 +2,7 @@
 #define _LISTS_
 
 #include <stddef.h>
-
+#include <stdlib.h>
 /**
  * struct listsint_s - singly linked list
  * @n: integer

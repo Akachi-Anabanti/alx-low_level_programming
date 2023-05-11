@@ -2,6 +2,12 @@
 
 #define BUFFER_SIZE 1024
 
+/**
+ * file_error - handles file error
+ * @op_type: operation type read, write
+ * @filename: name of file
+ * @code: exit code
+ */
 void file_error(char *op_type, char *filename, unsigned int code)
 {
 	dprintf(2, "Error Can't %s from file %s\n", op_type, filename);

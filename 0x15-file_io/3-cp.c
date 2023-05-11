@@ -22,39 +22,33 @@ void file_error(int op_type, char *filename)
 	}
 }
 /**
- * main - copies content from file one to file to
- * @argv: argument vector
- * @argc: argument count
- * Return: 1 on success else -1
+ * copy_from - copies content from file one to file to
+ * @file_from: filename to copy from
+ * @file_to: filename to copy to
  */
-int main(int argc, char **argv)
+void copy_from(char *file_from, char *file_to)
 {
 	int fd1, fd2, bytes_read, bytes_written;
 	char buffer[BUFFER_SIZE];
 	/*mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH*/
 
-	if (argc != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
-		exit(97);
-	}
-	fd1 = open(argv[1], O_RDONLY);/*file_from descriptor*/
+	fd1 = open(file_from, O_RDONLY);/*file_from descriptor*/
 	if (fd1 == -1)
-		file_error(1, argv[1]);
-	fd2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);/*file_to descriptor*/
+		file_error(1, file_from);
+	fd2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);/*file_to descriptor*/
 	if (fd2 == -1)
-		file_error(0, argv[2]);
+		file_error(0, file_to);
 	while ((bytes_read = read(fd1, buffer, BUFFER_SIZE)) > 0)
 	{
 		bytes_written = write(fd2, buffer, bytes_read);
 		if (bytes_written == -1)
-			file_error(0, argv[2]);
+			file_error(0, file_to);
 	}
 	if (bytes_read == -1)
 	{
 		close(fd1);
 		close(fd2);
-		file_error(1, argv[1]);
+		file_error(1, file_from);
 	}
 	if (close(fd1) == -1)
 	{
@@ -66,5 +60,25 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d", fd2);
 		exit(100);
 	}
-	return (1);
+}
+
+/**
+ * main - entry point
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0 always
+ */
+int main(int argc, char **argv)
+{
+	char *file_from, *file_to;
+
+	if (argc != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
+		exit(97);
+	}
+	file_from = argv[1];
+	file_to = argv[2];
+	copy_from(file_from, file_to);
+	return (0);
 }

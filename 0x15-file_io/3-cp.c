@@ -4,14 +4,22 @@
 
 /**
  * file_error - handles file error
- * @op_type: operation type read, write
+ * @op_type: operation type read (1) write (0)
  * @filename: name of file
- * @code: exit code
  */
-void file_error(char *op_type, char *filename, unsigned int code)
+void file_error(int op_type, char *filename)
 {
-	dprintf(2, "Error Can't %s from file %s\n", op_type, filename);
-	exit(code);
+	switch (op_type)
+	{
+		case 1:
+			dprintf(2, "Error Can't read from file %s\n", filename);
+			exit(98);
+			break;
+		case 0:
+			dprintf(2, "Error Can't write to this file %s\n", filename);
+			exit(99);
+			break;
+	}
 }
 /**
  * main - copies content from file one to file to
@@ -32,18 +40,18 @@ int main(int argc, char **argv)
 	}
 	fd1 = open(argv[1], O_RDONLY);/*file_from descriptor*/
 	if (fd1 == -1)
-		file_error("read", argv[1], 98);
+		file_error(1, argv[1]);
 	fd2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);/*file_to descriptor*/
 	if (fd2 == -1)
-		file_error("write", argv[2], 99);
+		file_error(0, argv[2]);
 	while ((bytes_read = read(fd1, buffer, BUFFER_SIZE)) > 0)
 	{
 		bytes_written = write(fd2, buffer, bytes_read);
 		if (bytes_written == -1)
-			file_error("write", argv[2], 99);
+			file_error(0, argv[2]);
 	}
 	if (bytes_read == -1)
-		file_error("read", argv[1], 98);
+		file_error(1, argv[1]);
 	if (close(fd1) == -1)
 	{
 		dprintf(2, "Error: Can't close fd %d", fd1);

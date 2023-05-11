@@ -12,11 +12,11 @@ void file_error(int op_type, char *filename)
 	switch (op_type)
 	{
 		case 1:
-			dprintf(2, "Error: Can't read from file %s\n", filename);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
 			exit(98);
 			break;
 		case 0:
-			dprintf(2, "Error: Can't write to %s\n", filename);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
 			exit(99);
 			break;
 	}
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		dprintf(2, "Usage: %s file_from file_to\n", argv[0]);
+		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
 		exit(97);
 	}
 	fd1 = open(argv[1], O_RDONLY);/*file_from descriptor*/
@@ -51,15 +51,19 @@ int main(int argc, char **argv)
 			file_error(0, argv[2]);
 	}
 	if (bytes_read == -1)
+	{
+		close(fd1);
+		close(fd2);
 		file_error(1, argv[1]);
+	}
 	if (close(fd1) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d", fd1);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d", fd1);
 		exit(100);
 	}
 	if (close(fd2) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d", fd2);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d", fd2);
 		exit(100);
 	}
 	return (1);

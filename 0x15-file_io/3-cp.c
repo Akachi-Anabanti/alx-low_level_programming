@@ -4,7 +4,7 @@
 
 void file_error(char *op_type, char *filename, unsigned int code)
 {
-	dprintf(2,"Error Can't %s from file %s\n", op_type, filename);
+	dprintf(2, "Error Can't %s from file %s\n", op_type, filename);
 	exit(code);
 }
 /**

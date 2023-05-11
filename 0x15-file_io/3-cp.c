@@ -42,7 +42,10 @@ void copy_from(char *file_from, char *file_to)
 	{
 		bytes_written = write(fd2, buffer, bytes_read);
 		if (bytes_written == -1)
+		{
+			close(fd1), close(fd2);
 			file_error(0, file_to);
+		}
 	}
 	if (bytes_read == -1)
 	{

@@ -12,11 +12,11 @@ void file_error(int op_type, char *filename)
 	switch (op_type)
 	{
 		case 1:
-			dprintf(2, "Error Can't read from file %s\n", filename);
+			dprintf(2, "Error: Can't read from file %s\n", filename);
 			exit(98);
 			break;
 		case 0:
-			dprintf(2, "Error Can't write to this file %s\n", filename);
+			dprintf(2, "Error: Can't write to %s\n", filename);
 			exit(99);
 			break;
 	}
@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 {
 	int fd1, fd2, bytes_read, bytes_written;
 	char buffer[BUFFER_SIZE];
-	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	/*mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH*/
 
 	if (argc != 3)
 	{
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	fd1 = open(argv[1], O_RDONLY);/*file_from descriptor*/
 	if (fd1 == -1)
 		file_error(1, argv[1]);
-	fd2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);/*file_to descriptor*/
+	fd2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);/*file_to descriptor*/
 	if (fd2 == -1)
 		file_error(0, argv[2]);
 	while ((bytes_read = read(fd1, buffer, BUFFER_SIZE)) > 0)

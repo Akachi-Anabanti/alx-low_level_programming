@@ -1,3 +1,5 @@
 # Bit mainpulation with c
-[1] Convert binary to unsigned int
-[2] Print the binary equivalent of a nunber
+<ol>
+<li>Convert binary to unsigned int<li>
+<li>Print the binary equivalent of a nunber<li>
+</ol>

@@ -9,7 +9,7 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
-	ssize_t nchar;
+	ssize_t nchar, ncharW;
 	char *buff;
 
 	if (filename == NULL)
@@ -30,7 +30,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		close(fd), free(buff);
 		return (0);
 	}
-	if (write(STDIN_FILENO, buff, nchar) == -1)
+	ncharW = write(STDIN_FILENO, buff, nchar);
+	if (ncharW == -1 || (ncharW != nchar))
 	{
 		close(fd), free(buff);
 		return (0);

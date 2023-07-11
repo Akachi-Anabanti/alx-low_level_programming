@@ -21,7 +21,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	ncharW = write(STDOUT_FILENO, buff, nchar);
 
 	if (fd == -1 || nchar == -1 || ncharW == -1
-			|| ncharw != nchar)
+			|| ncharW != nchar)
 	{
 		free(buff);
 		close(fd);

@@ -10,6 +10,8 @@ size_t print_dlistint(const dlistint_t *h)
 	dlistint_t *nextnode;
 	size_t count = 0;
 
+	if (h == NULL)
+		return (0);
 	nextnode = malloc(sizeof(dlistint_t));
 
 	nextnode->next = h->next;
